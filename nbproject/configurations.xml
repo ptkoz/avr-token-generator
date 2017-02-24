@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="controller" displayName="controller" projectFiles="true">
+        <itemPath>src/controller/Controller.cpp</itemPath>
+        <itemPath>src/controller/Controller.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="model" displayName="model" projectFiles="true">
+        <itemPath>src/model/State.cpp</itemPath>
+        <itemPath>src/model/State.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="tool" displayName="tool" projectFiles="true">
+        <logicalFolder name="pin" displayName="pin" projectFiles="true">
+          <logicalFolder name="digital" displayName="digital" projectFiles="true">
+            <itemPath>src/tool/pin/digital/Output.cpp</itemPath>
+            <itemPath>src/tool/pin/digital/Output.h</itemPath>
+            <itemPath>src/tool/pin/digital/Pin.cpp</itemPath>
+            <itemPath>src/tool/pin/digital/Pin.h</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <itemPath>src/tool/tool.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="view" displayName="view" projectFiles="true">
+        <logicalFolder name="display" displayName="display" projectFiles="true">
+          <logicalFolder name="message" displayName="message" projectFiles="true">
+            <itemPath>src/view/display/message/Busy.cpp</itemPath>
+            <itemPath>src/view/display/message/Busy.h</itemPath>
+            <itemPath>src/view/display/message/Timeout.cpp</itemPath>
+            <itemPath>src/view/display/message/Timeout.h</itemPath>
+            <itemPath>src/view/display/message/Token.cpp</itemPath>
+            <itemPath>src/view/display/message/Token.h</itemPath>
+          </logicalFolder>
+          <itemPath>src/view/display/Message.cpp</itemPath>
+          <itemPath>src/view/display/Message.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="status" displayName="status" projectFiles="true">
+          <itemPath>src/view/status/Buzzer.cpp</itemPath>
+          <itemPath>src/view/status/Buzzer.h</itemPath>
+          <itemPath>src/view/status/Led.cpp</itemPath>
+          <itemPath>src/view/status/Led.h</itemPath>
+        </logicalFolder>
+        <itemPath>src/view/Display.cpp</itemPath>
+        <itemPath>src/view/Display.h</itemPath>
+      </logicalFolder>
+      <itemPath>src/main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>src</Elem>
+    <Elem>/usr/local/arduino/1.8/libraries/EEPROM/src</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>Arduino|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>0</developmentMode>
+          <incDir>
+            <pElem>/usr/local/arduino/1.8/cores/arduino</pElem>
+            <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
+            <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
+          </incDir>
+          <commandLine>-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR</commandLine>
+          <warningLevel>2</warningLevel>
+        </cTool>
+        <ccTool>
+          <developmentMode>0</developmentMode>
+          <incDir>
+            <pElem>/usr/local/arduino/1.8/cores/arduino</pElem>
+            <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
+            <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
+          </incDir>
+          <commandLine>-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR</commandLine>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tokenizer</output>
+          <linkerAddLib>
+            <pElem>../corelib/dist/Release/Arduino-MacOSX</pElem>
+          </linkerAddLib>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+          <commandlineTool>avr-gcc</commandlineTool>
+          <linkerLibItems>
+            <linkerLibLibItem>corelib</linkerLibLibItem>
+          </linkerLibItems>
+          <commandLine>-w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p</commandLine>
+        </linkerTool>
+      </compileType>
+      <folder path="TestFiles">
+        <linkerTool>
+          <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
+          </linkerDynSerch>
+        </linkerTool>
+      </folder>
+      <item path="src/controller/Controller.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/controller/Controller.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/model/State.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/model/State.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/tool/pin/digital/Output.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tool/pin/digital/Output.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/tool/pin/digital/Pin.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tool/pin/digital/Pin.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/tool/tool.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/Display.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/Display.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/display/Message.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/display/Message.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/display/message/Busy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/display/message/Busy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/display/message/Timeout.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/view/display/message/Timeout.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/display/message/Token.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/display/message/Token.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/status/Buzzer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/status/Buzzer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/view/status/Led.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/view/status/Led.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
