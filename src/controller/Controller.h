@@ -1,12 +1,18 @@
 /*
- * UI.h
+ * Copyright (C) 2017 Patryk Kozłowski
  *
- *  Created on: 21.02.2017
- *      Author: patryk
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  This class is responsible for controlling user interfece
- *  of WiFi token generator. User interfece is composed by
- *  LCD screen, status LED and buzzer.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef SRC_CONTROLLER_H_
@@ -17,17 +23,18 @@
 #include "../view/Display.h"
 #include "../model/State.h"
 
-// type value represents state timeout in ms
-
-
 class Controller {
 	public:
 		Controller();
 		~Controller();
 
+		// Called on each program loop iteration
 		void update();
+		// Called externally by program loop when button is pressed
 		void handleNewTokenRequest();
+		// Checks if there is token available on serial port
 		void handleTokenReceive();
+		// State timeout detected, what shall we do now?
 		void handleStateTimeout();
 	private:
 		view::status::led::Led led;
