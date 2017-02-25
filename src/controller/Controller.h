@@ -25,7 +25,7 @@ class Controller {
 		Controller();
 		~Controller();
 
-		void loop();
+		void update();
 		void handleNewTokenRequest();
 		void handleTokenReceive();
 		void handleStateTimeout();
