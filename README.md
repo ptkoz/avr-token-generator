@@ -8,13 +8,13 @@ Please note that the whole authorization depends on user having physical access 
 
 There are several message types sent through serial port to the controlling unit. Each message is followed by `CRLF` char sequence.
 
-* Messages starting with `LOG:`
+* Messages starting with `"LOG:"`
 
 Those are debug messages, sent from time to time to provide some basic device status. You may safely ignore them or - if you want - store them in some log file.
 
-* Messages starting with `TKN:`
+* Messages starting with `"TKN:"`
 
-This is how new tokens are sent to the controlling unit. You should reply with simple `OK` followed by `CRLF` to inform device that everything is OK and user may authorize himself with the token.
+This is how new tokens are sent to the controlling unit. You should reply with simple `"OK"` followed by `CRLF` to inform device that everything is OK and user may authorize himself with the token.
 
 ## Credits
 
