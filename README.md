@@ -16,6 +16,6 @@ Those are debug messages, sent from time to time to have some basic idea about t
 
 This is how new tokens are sent to the controlling unit. You should reply with simple "OK" followed by CRLF to inform device that everything is OK and user may authorize himself with the token.
 
-# Credits
+## Credits
 
 This software was originally designed for Arduino Uno platform and - for simplicity - is built using slightly modified Arduino code library. Although project is managed in Netbeans IDE with appropriate Makefiles, you may still need Arduino IDE to provide valid toolchain and libraries.
