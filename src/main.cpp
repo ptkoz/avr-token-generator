@@ -15,51 +15,53 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+ */
 
 #include <Arduino.h>
 #include "controller/Controller.h"
 
 // Declared weak in Arduino.h to allow user redefinitions.
-int atexit(void (* /*func*/ )()) { return 0; }
+int atexit(void (* /*func*/)()) { return 0; }
 
 // Weak empty variant initialization function.
 // May be redefined by variant files.
-void initVariant() __attribute__((weak));
+void initVariant() __attribute__ ((weak));
 void initVariant() { }
 
-void setupUSB() __attribute__((weak));
+void setupUSB() __attribute__ ((weak));
 void setupUSB() { }
 
 volatile bool handleInterruptFlag = false;
 void interrupt();
 
-int main(void)
-{
-    init();
-    initVariant();
-	
-    #if defined(USBCON)
-		USBDevice.attach();
-	#endif
+int main(void) {
+	init();
+	initVariant();
 
+#if defined(USBCON)
+	USBDevice.attach();
+#endif
+
+	// It's easier to handle interruptions here than
+	// in controller.
 	attachInterrupt(digitalPinToInterrupt(2), interrupt, FALLING);
-	Serial.begin(9600);
-	while (!Serial);
 
+	// Let's create program controller.
 	Controller controller;
+
+	// Main program loop
+	for (;;) {
+		controller.update();
 		
-    for (;;) {
-        controller.loop();
 		if (handleInterruptFlag) {
 			controller.handleNewTokenRequest();
 			handleInterruptFlag = false;
 		}
-		
-        if (serialEventRun) serialEventRun();
-    }
 
-    return 0;
+		if(serialEventRun) serialEventRun();
+	}
+
+	return 0;
 }
 
 void interrupt() {

@@ -17,7 +17,7 @@
 Controller::Controller(): led(13), buzzer(4), display(6, 7, 8, 9, 10, 11, 12, 5) { }
 Controller::~Controller() { }
 
-void Controller::loop() {
+void Controller::update() {
 	if(state.isTimedOut()) {
 		handleStateTimeout();
 	}
