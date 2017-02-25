@@ -49,10 +49,15 @@ int main(void) {
 	// Let's create program controller.
 	Controller controller;
 
+<<<<<<< HEAD
 	// Main program loop
 	for (;;) {
 		controller.update();
 		
+=======
+	for (;;) {
+		controller.update();
+>>>>>>> 2e21dce1eadb0714d2f4cfa14b867a9712af7b92
 		if (handleInterruptFlag) {
 			controller.handleNewTokenRequest();
 			handleInterruptFlag = false;
