@@ -25,6 +25,7 @@ LiquidCrystal & Token::printOn(LiquidCrystal & lcd) {
 	lcd.setCursor(0, 0);
 	lcd.print(msg);
 
+	// Show token on the center of the second line.
 	lcd.setCursor((16 - token.length()) / 2, 1);
 	lcd.print(token);
 

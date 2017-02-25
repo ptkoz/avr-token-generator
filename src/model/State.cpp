@@ -27,27 +27,34 @@ bool State::isTimedOut() const {
 	unsigned long age = millis() - lastStateChange;
 	switch(currentState) {
 		case IDLE:
+			// CPU goes to sleep when IDLE state is timed out.
 			return age > 10000;
 
 		case TOKEN_REQUESTED:
+			// Progress bar must be completed on this timeout.
 			return age > 1900;
 
 		case AWAITING_TOKEN:
+			// How many seconds after progress bar is completed
+			// shall we wait for token on the serial port?
 			return age > 1000;
 
 		case TOKEN_READY:
 		case REQUEST_TIMEOUT:
+			// Success / failure message will be displayed as long
+			// as this state is not timed out.
 			return age > 10000;
 
 		default:
+			// Just in case. Should not happen.
 			return age > 1000;
 
 	}
 }
 
 State & State::operator =(const state newState) {
-	currentState = newState;
-	lastStateChange = millis();
+	currentState = newState; // Change state.
+	lastStateChange = millis(); // Record change timestamp.
 	return *this;
 }
 
@@ -56,5 +63,5 @@ bool State::operator ==(const state comparedState) const {
 }
 
 bool model::state::operator ==(const state stateA, const State & stateB) {
-	return stateB == stateA;
+	return stateB == stateA; // Pass to the class' == operator.
 }

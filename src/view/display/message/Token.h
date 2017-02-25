@@ -22,6 +22,10 @@
 
 namespace view { namespace display { namespace message {
 
+/*
+ * Message displaying generated token on
+ * the LCD screen.
+ */
 class Token: public Message {
 	public:
 		Token(const String & token);
@@ -29,8 +33,10 @@ class Token: public Message {
 
 		LiquidCrystal & printOn(LiquidCrystal & lcd);
 	private:
-		String msg = "Twoj token WiFi:";
-		String token;
+		// The token message caption.
+		const String msg = "Twoj token WiFi:";
+		// The token to display.
+		const String token;
 };
 
 }}}

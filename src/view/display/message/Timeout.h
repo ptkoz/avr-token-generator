@@ -22,6 +22,9 @@
 
 namespace view { namespace display { namespace message {
 
+/*
+ * Message displayd when token genration failed.
+ */	
 class Timeout: public Message {
 	public:
 		Timeout();
@@ -30,8 +33,10 @@ class Timeout: public Message {
 		LiquidCrystal & printOn(LiquidCrystal & lcd);
 
 	private:
-		String line1 = "Brak odpowiedzi";
-		String line2 = "Sprobuj ponownie";
+		// First line of message.
+		const String line1 = "Brak odpowiedzi";
+		// Second line of message.
+		const String line2 = "Sprobuj ponownie";
 };
 
 }}}

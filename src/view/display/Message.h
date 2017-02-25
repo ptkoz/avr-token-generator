@@ -21,11 +21,22 @@
 #include <LiquidCrystal.h>
 
 namespace view { namespace display {
+	/*
+	 * Class that represents single message displayed
+	 * on the LCD screen.
+	 */
 	class Message {
 		public:
 			Message();
 			virtual ~Message();
+			
+			// Method responsible for displaying the message.
 			virtual LiquidCrystal & printOn(LiquidCrystal & lcd) = 0;
+			
+			// Method called on each iteration of application loop.
+			// By default does nothing, but if you want dynamic message
+			// (eg. progress bar) you may update it by overloading
+			// this method.
 			virtual LiquidCrystal & updateOn(LiquidCrystal & lcd);
 		};
 }}

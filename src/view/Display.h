@@ -23,17 +23,25 @@
 #include "display/Message.h"
 
 namespace view { namespace display {
+	/*
+	 * Class controlling 16x2 LCD display attached 
+	 * to the token device.
+	 */
 	class Display {
 		public:
 			Display(const char rs, const char rw, const char enable, const char d0, const char d1, const char d2, const char d3, const char backlight);
 			~Display();
 
-			// API for controller loop
+			// API for controller loop.
 			void update();
 
+			// Put new message on the screen.
 			void show(Message * msg);
+			
+			// Clear message displayed on the screen.
 			void clear();
 		private:
+			// Free some memory once message is cleared.
 			void clearMessage();
 
 			LiquidCrystal screen;

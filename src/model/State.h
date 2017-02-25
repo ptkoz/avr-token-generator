@@ -19,22 +19,54 @@
 #define SRC_MODEL_STATE_H_
 
 namespace model { namespace state {
-	// state type definition
+	/*
+	 * Application state types:
+	 * 
+	 * -- IDLE --
+	 * Nothing is happening, display is cleared and powered
+	 * off and status LED is disabled.
+	 * 
+	 * -- TOKEN_READY --
+	 * Token has been successfully generated and is currently
+	 * displayed on the LCD screen. Status LED is disabled.
+	 * 
+	 * -- REQUEST_TIMEOUT --
+	 * Token could not be generated. Timeout message is currently
+	 * displayed on the LCD screen. Status LED is disabled.
+	 * 
+	 * -- TOKEN_REQUESTED --
+	 * User has requested for the token. Progres bar is
+	 * displayed on the LCD screen and the status LED is
+	 * blinking.
+	 * 
+	 * -- AWAITING_TOKEN --
+	 * Progress bar has reached it's endpoint. We can
+	 * now receive token and show it to the user.
+	 * 
+	 * Please note that following enum is order-sensitive. State
+	 * values greater or equal TOKEN_REQUESTED (100) are "busy"
+	 * states in which new token requests are ignored.
+	 */ 
 	typedef enum { IDLE = 0, TOKEN_READY, REQUEST_TIMEOUT, TOKEN_REQUESTED = 100, AWAITING_TOKEN } state;
 
+	/*
+	 * Class that controlls the application state.
+	 */
 	class State {
 		public:
 			State();
 			~State();
 
-			// are we during new token request?
+			// Are we during new token request?
 			bool isProcessingRequest() const { return currentState >= TOKEN_REQUESTED; }
 
-			// is current state timed out?
+			// Is current state timed out?
 			bool isTimedOut() const;
 
-			// set the new state
+			// Set the new state.
 			State & operator =(const state newState);
+			
+			// Compare current state.
 			bool operator==(const state state) const;
 		private:
 			state currentState;
@@ -42,6 +74,7 @@ namespace model { namespace state {
 
 	};
 
+	// Allow state comparison with constant on the left side.
 	bool operator ==(const state stateA, const State & stateB);
 }}
 

@@ -25,10 +25,11 @@ Busy::~Busy() { }
 LiquidCrystal & Busy::printOn(LiquidCrystal & lcd) {
 	lcd.setCursor(0, 0);
 	lcd.print(msg);
+	
+	// Progress bar is displayed in second line.
 	lcd.setCursor(0, 1);
 	return lcd;
 }
-
 
 LiquidCrystal & Busy::updateOn(LiquidCrystal & lcd) {
 	unsigned long timeNow = millis();

@@ -21,31 +21,38 @@
 #include "../../tool/pin/digital/Output.h"
 
 namespace view { namespace status { namespace buzzer {
-	// handy namespace constants
+	// How much milliseconds should one message take?
 	const unsigned short MESSAGE_DURATION = 150;
+	
+	// How many milliseconds should elapse between
+	// independent messages?
 	const unsigned short MESSAGE_INTERVAL = 300;
 
-	// type represents number of beeps for each message
+	// Message types. Type value represent number of beeps.
 	typedef enum { IDLE = 0, SUCCESS = 1, BUSY = 2, FAILURE = 3 } Message;
 
-	// class declaration
+	/*
+	 * Class that can play messages on the buzzer attached
+	 * to the device. Each message lasts the same but have
+	 * different number of (longer or shorter) beeps.
+	 */
 	class Buzzer {
 		public:
 			Buzzer(const char pin);
 			~Buzzer();
 
-			// beep out the message
+			// Beep out the message.
 			void beep(Message msg);
 
-			// API for controller loop
+			// API for controller loop.
 			void update();
 		private:
 			tool::pin::digital::Output output;
 
-			// how many beeps to play in current message?
+			// How many beeps to play in current message?
 			unsigned char beepsToPlay;
 
-			 // next message in queue
+			 // Next message in queue. Only one is allowed.
 			Message nextMessage;
 	};
 }}}

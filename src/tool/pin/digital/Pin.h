@@ -19,15 +19,19 @@
 #define TOOL_PIN_DIGITAL_PIN_H_
 
 namespace tool { namespace pin { namespace digital {
+	/*
+	 * Class for reading digital PIN state 
+	 * in object oriented manner.
+	 */
 	class Pin {
 		public:
 			Pin(const char pin);
 			virtual ~Pin();
 
-			// what is the current state?
+			// What is the current state?
 			virtual bool getCurrentState() const;
 		protected:
-			// digital ouput pin to use
+			// Digital ouput pin to use.
 			const char pin;
 	};
 }}}

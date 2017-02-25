@@ -26,20 +26,20 @@ void Buzzer::beep(const Message msg) {
 }
 
 void Buzzer::update() {
-	// beep interval is calculated for each message
+	// Beep interval is calculated for each message.
 	static unsigned short beepInterval = 0;
 
-	// check if we can begin playing next message
+	// Check if we can begin playing next message.
 	if(0 == beepsToPlay && IDLE != nextMessage && output.getMillisFromLastStateChange() > MESSAGE_INTERVAL) {
 		beepsToPlay = nextMessage;
 		nextMessage = IDLE;
 		beepInterval = MESSAGE_DURATION / beepsToPlay;
 	}
 
-	// if there are some beeps to play left, let's play them
+	// If there are some beeps to play left, let's play them.
 	if(beepsToPlay > 0 && output.getMillisFromLastStateChange() > beepInterval) {
 		if(output.getCurrentState()) {
-			// buzzer has completed beep cycle, decrement number of beeps to play
+			// Buzzer has completed beep cycle, decrement number of beeps to play.
 			beepsToPlay--;
 		}
 

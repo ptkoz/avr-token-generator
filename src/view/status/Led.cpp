@@ -31,7 +31,7 @@ void Led::update() {
 			output.toggle();
 		}
 	} else if(output.getCurrentState()) {
-		/**
+		/*
 		 * Component is disabled, but led is still enabled.
 		 * Let's disable it.
 		 */

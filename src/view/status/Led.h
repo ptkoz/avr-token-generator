@@ -21,27 +21,30 @@
 #include "../../tool/pin/digital/Output.h"
 
 namespace view { namespace status { namespace led {
-	// handy namespace constants
+	// When status LED is enabled, how often should it blink?
 	const unsigned short BLINKING_INTERVAL = 100;
 
-	// class declaration
+	/*
+	 * Class controlling the status LED. Status
+	 * LES shall blink when device is busy.
+	 */
 	class Led {
 		public:
 			Led(const char pin);
 			~Led();
 
-			// component state management
+			// Component state management.
 			void enable() { enabled = true; }
 			void disable() { enabled = false; }
 
-			// API for controller loop
+			// API for controller loop.
 			void update();
 
 		private:
-			// output pin
+			// Output pin.
 			tool::pin::digital::Output output;
 
-			// are we blinking or not?
+			// Are we blinking in blinking mode or not?
 			bool enabled;
 	};
 }}}

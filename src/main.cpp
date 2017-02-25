@@ -49,21 +49,18 @@ int main(void) {
 	// Let's create program controller.
 	Controller controller;
 
-<<<<<<< HEAD
 	// Main program loop
 	for (;;) {
 		controller.update();
 		
-=======
-	for (;;) {
-		controller.update();
->>>>>>> 2e21dce1eadb0714d2f4cfa14b867a9712af7b92
 		if (handleInterruptFlag) {
 			controller.handleNewTokenRequest();
 			handleInterruptFlag = false;
 		}
 
-		if(serialEventRun) serialEventRun();
+		if (serialEventRun) {
+			serialEventRun();
+		}
 	}
 
 	return 0;
@@ -73,7 +70,7 @@ void interrupt() {
 	static unsigned long lastInterruptTimestamp = 0;
 	unsigned long timeNow = millis();
 	if (timeNow - lastInterruptTimestamp < 200) {
-		// ignore contact vibration
+		// Ignore contact vibrations.
 		return;
 	}
 

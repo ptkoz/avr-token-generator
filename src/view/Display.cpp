@@ -27,22 +27,28 @@ Display::Display(const char rs, const char rw, const char enable, const char d0,
 }
 
 Display::~Display() {
-	clearMessage();
+	clearMessage(); // Free memory allocated by the message.
 }
 
 void Display::update() {
+	// If there is any message displayed, maybe it want 
+	// to be updated?
 	if(currentMessage) {
 		currentMessage->updateOn(screen);
 	}
 }
 
 void Display::show(Message * newMessage) {
+	// Clear any previous message.
 	screen.clear();
+	// Cleanup memory after previous message.
 	clearMessage();
 
+	// Give message screen it may be displayed on.
 	currentMessage = newMessage;
 	currentMessage->printOn(screen);
 
+	// Enable backligjt if disabled.
 	if(!backlight.getCurrentState()) {
 		backlight.enable();
 	}
@@ -51,8 +57,8 @@ void Display::show(Message * newMessage) {
 void Display::clear() {
 	backlight.disable();
 
-	screen.clear();
-	clearMessage();
+	screen.clear(); // Clear the screen.
+	clearMessage();  // Free the memory.
 }
 
 void Display::clearMessage() {

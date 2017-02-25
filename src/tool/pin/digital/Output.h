@@ -21,22 +21,26 @@
 #include "Pin.h"
 
 namespace tool { namespace pin { namespace digital {
+	/*
+	 * Class for managing digital PIN state 
+	 * in object oriented manner.
+	 */
 	class Output : public Pin {
 		public:
 			Output(const char pin);
 			~Output();
 
-			// control output
+			// Output controlling API.
 			void enable();
 			void disable();
 			void toggle();
 
-			// how many milliseconds elapsed from last state change?
+			// How many milliseconds elapsed from last state change?
 			unsigned long getMillisFromLastStateChange() const;
 		private:
 			unsigned long lastStateChange;
 
-			// change the state
+			// Do change the state.
 			void write(bool state);
 	};
 }}}

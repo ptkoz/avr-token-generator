@@ -32,11 +32,6 @@ Output::~Output() {
 	digitalWrite(pin, LOW);
 }
 
-void Output::write(bool state) {
-	lastStateChange = millis();
-	digitalWrite(pin, state);
-}
-
 void Output::enable() {
 	write(true);
 }
@@ -51,4 +46,9 @@ void Output::toggle() {
 
 unsigned long Output::getMillisFromLastStateChange() const {
 	return millis() - lastStateChange;
+}
+
+void Output::write(bool state) {
+	lastStateChange = millis();
+	digitalWrite(pin, state);
 }

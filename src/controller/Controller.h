@@ -23,16 +23,19 @@
 #include "../view/Display.h"
 #include "../model/State.h"
 
+/*
+ * Class that controls whole application logic.
+ */
 class Controller {
 	public:
 		Controller();
 		~Controller();
 
-		// Called on each program loop iteration
+		// Called on each program loop iteration.
 		void update();
-		// Called externally by program loop when button is pressed
+		// Called externally by program loop when button is pressed.
 		void handleNewTokenRequest();
-		// Checks if there is token available on serial port
+		// Checks if there is token available on serial port.
 		void handleTokenReceive();
 		// State timeout detected, what shall we do now?
 		void handleStateTimeout();

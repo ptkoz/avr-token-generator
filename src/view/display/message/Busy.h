@@ -22,19 +22,30 @@
 
 namespace view { namespace display { namespace message {
 
-// handy constant
+// Char used to display progress bar.
 const char PROGRESS_CHAR = char(255);
+
+// How many millisecond we shall wait before
+// displaying next progress char?
 const unsigned short PROGRESS_STEP_DURATION = 100;
 
+/*
+ * Message that display progress bar on the LCD
+ * screen.
+ */
 class Busy: public Message {
 	public:
 		Busy();
 		~Busy();
 
+		// Print initial message.
 		LiquidCrystal & printOn(LiquidCrystal & lcd);
+		
+		// Update progress bar steps.
 		LiquidCrystal & updateOn(LiquidCrystal & lcd);
 	private:
-		String msg = "Generuje token";
+		// The string to display.
+		const String msg = "Generuje token";
 		unsigned long lastProgressStep;
 		unsigned char progressStepsLeft;
 
