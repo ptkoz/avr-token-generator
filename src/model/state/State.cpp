@@ -39,7 +39,7 @@ bool State::isTimedOut() const {
 			// shall we wait for token on the serial port?
 			return age > 1000;
 
-		case TOKEN_READY:
+		case TOKEN_ACCEPTED:
 		case REQUEST_TIMEOUT:
 			// Success / failure message will be displayed as long
 			// as this state is not timed out.

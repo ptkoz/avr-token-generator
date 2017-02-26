@@ -37,7 +37,7 @@ class Controller {
 		void update();
 		// Called externally by program loop when button is pressed.
 		void handleNewTokenRequest();
-		// Handle successfull token generation request.
+		// Token was generated, what shall we do now?
 		void handleTokenReady();
 		// State timeout detected, what shall we do now?
 		void handleStateTimeout();

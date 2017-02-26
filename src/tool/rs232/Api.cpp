@@ -15,13 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* 
- * File:   Api.cpp
- * Author: patryk
- * 
- * Created on 26 lutego 2017, 17:28
- */
-
 #include "Api.h"
 
 using namespace tool::rs232;
@@ -37,9 +30,31 @@ Api::~Api() {
 
 void Api::log(const __FlashStringHelper * message) {
 	Serial.print(F("LOG:"));
-	Serial.println(message);
+	Serial.print(message);
+	Serial.write('\n');
 }
 
-void Api::update() {
+void Api::sendVerifyToken(const char * token) {
+	tokenVerificationStatus = VERIFICATION_WAITING;
 	
+	// Clear any data left on serial port.
+	while(Serial.available() > 0) Serial.read();
+	
+	// Send new token.
+	Serial.print(F("TKN:"));
+	Serial.write(token);
+	Serial.write('\n');
+}
+
+void Api::clearTokenVerificationStatus() {
+	tokenVerificationStatus = NO_TOKEN;
+}
+
+
+void Api::update() {
+	// If we expecting token verification response and there is data on serial
+	if(VERIFICATION_WAITING == tokenVerificationStatus && Serial.available() > 0) {
+		String response = Serial.readStringUntil('\n');
+		tokenVerificationStatus = (response == "OK") ? VERIFICATION_OK : VERIFICATION_FAILED;
+	}
 }

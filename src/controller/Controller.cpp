@@ -40,12 +40,12 @@ Controller::~Controller() {
 }
 
 void Controller::update() {
-	// Perfmor state timeout actions if required.
+	// Perfmor state timeout action if required.
 	if (state.isTimedOut()) {
 		handleStateTimeout();
 	}
 
-	// If we're awaiting token, check if is ready.
+	// If we're during token generation and token is ready.
 	if (state.isProcessingRequest() && generator.isReady()) {
 		handleTokenReady();
 	}
@@ -54,7 +54,9 @@ void Controller::update() {
 	buzzer.update();
 	led.update();
 	display.update();
+	
 	generator.update();
+	api.update();
 }
 
 void Controller::handleNewTokenRequest() {
@@ -76,18 +78,35 @@ void Controller::handleNewTokenRequest() {
 		display.show(new view::display::message::Busy);
 		
 		// Start generating token.
+		api.clearTokenVerificationStatus();
 		generator.start(TOKEN_LENGTH);
 		
 	}
 }
 
 void Controller::handleTokenReady() {
-	// Token is available. Go and display it.
-	state = model::state::TOKEN_READY;
-
-	led.disable();
-	buzzer.beep(view::status::buzzer::SUCCESS);
-	display.show(new view::display::message::Token(generator.getToken()));
+	// Token is ready. Now we need to send it to controlling
+	// unit and wait for response.
+	
+	if(!api.isTokenSent()) {
+		// Send token to controlling unit.
+		api.sendVerifyToken(generator.getToken());
+	} else if(api.isTokenRejected()) {
+		// Token was rejected, restart generation.
+		api.clearTokenVerificationStatus();
+		generator.start(TOKEN_LENGTH);
+		
+		api.log(F("Token was rejected - restarting generator"));
+	} else if(api.isTokenAccepted() && model::state::AWAITING_CONFIRMATION == state) {
+		// Token was accepted and we're now ready to display it.
+		state = model::state::TOKEN_ACCEPTED;
+		
+		led.disable();
+		buzzer.beep(view::status::buzzer::SUCCESS);
+		display.show(new view::display::message::Token(generator.getToken()));
+		
+		api.log(F("Token was accepted and displayed on the screen"));
+	}
 }
 
 void Controller::handleStateTimeout() {
@@ -103,21 +122,24 @@ void Controller::handleStateTimeout() {
 		led.disable();
 		buzzer.beep(view::status::buzzer::FAILURE);
 		display.show(new view::display::message::Timeout);
+		
+		// Ignore late responses from controlling unit.
+		api.clearTokenVerificationStatus();
 	} else if (model::state::IDLE == state) {
 		// We're now idle for some time and may put CPU into sleep mode.
 		api.log(F("Going to sleep"));
 		delay(100); // Serial port API need some time to send data.
+		
 		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 		sleep_enable();
 		sleep_cpu();
 		sleep_disable();
+		
 		api.log(F("Waking up"));
 	} else {
-		// Timeout occured after successfull token
-		// request. Cleanup and go back to IDLE.
+		// Final message is now displayed for some time 
+		// and we may hide it and go back to IDLE.
 		state = model::state::IDLE;
-
-		led.disable();
 		display.clear();
 	}
 }

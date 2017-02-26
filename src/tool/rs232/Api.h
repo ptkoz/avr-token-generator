@@ -39,27 +39,38 @@ namespace tool { namespace rs232 {
 	 * Controlling unit refused to accept this token, we may need
 	 * to generate another one.
 	 * 
-	 * Please note that following enum is order-sensitive. State
-	 * values greater or equal VERIFICATION_OK (100) mean that
-	 * we are no longer waiting for the res.
+	 * Please note that following enum is order-sensitive. State 
+	 * values greater or equal VERIFICATION_WAITING mean that token 
+	 * have been sent to controlling unit.
 	 */ 
-	typedef enum { NO_TOKEN = 0, VERIFICATION_WAITING, VERIFICATION_OK = 100, VERIFICATION_FAILED } TokenVerificationStatus;
+	typedef enum { NO_TOKEN = 0, VERIFICATION_WAITING = 100, VERIFICATION_OK, VERIFICATION_FAILED } TokenVerificationStatus;
 
 	/*
 	 * Controls comminication on the serial port.
 	 */
 	class Api {
 		public:
-			Api(long serialSpeed);
+			Api(long);
 			~Api();
 
 			// Log to serial port
 			void log(const __FlashStringHelper *);
+			
+			// Send token to controlling unit and await verification.
+			void sendVerifyToken(const char * token);
+			// We don't care about last sent token, reset back to NO_TOKEN.
+			void clearTokenVerificationStatus();
+			
+			// Have token been sent to controlling unit yet?
+			bool isTokenSent() { return VERIFICATION_WAITING <= tokenVerificationStatus; }
+			// Have controlling unit accepted token?
+			bool isTokenAccepted() { return VERIFICATION_OK == tokenVerificationStatus; } 
+			// Have controlling unit responded about token yet?
+			bool isTokenRejected() { return VERIFICATION_FAILED == tokenVerificationStatus; }
 
 			// Controller loop API
 			void update();
 		private:
-			// 
 			TokenVerificationStatus tokenVerificationStatus;
 
 	};

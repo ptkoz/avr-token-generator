@@ -49,7 +49,7 @@ namespace model { namespace state {
 	 * values greater or equal TOKEN_REQUESTED (100) are "busy"
 	 * states in which new token requests are ignored.
 	 */ 
-	typedef enum { IDLE = 0, TOKEN_READY, REQUEST_TIMEOUT, TOKEN_REQUESTED = 100, AWAITING_CONFIRMATION } ApplicationState;
+	typedef enum { IDLE = 0, TOKEN_ACCEPTED, REQUEST_TIMEOUT, TOKEN_REQUESTED = 100, AWAITING_CONFIRMATION } ApplicationState;
 
 	/*
 	 * Class that controlls the application state.
