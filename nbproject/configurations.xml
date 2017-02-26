@@ -39,7 +39,10 @@
             <itemPath>src/tool/pin/digital/Pin.h</itemPath>
           </logicalFolder>
         </logicalFolder>
-        <itemPath>src/tool/tool.h</itemPath>
+        <logicalFolder name="rs232" displayName="rs232" projectFiles="true">
+          <itemPath>src/tool/rs232/Api.cpp</itemPath>
+          <itemPath>src/tool/rs232/Api.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="view" displayName="view" projectFiles="true">
         <logicalFolder name="display" displayName="display" projectFiles="true">
@@ -100,7 +103,15 @@
             <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
             <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
           </incDir>
-          <commandLine>-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR</commandLine>
+          <commandLine>-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p</commandLine>
+          <preprocessorList>
+            <Elem>ARDUINO=10801</Elem>
+            <Elem>ARDUINO_ARCH_AVR</Elem>
+            <Elem>ARDUINO_AVR_NANO</Elem>
+            <Elem>F_CPU=16000000L</Elem>
+            <Elem>__AVR_ATmega328P__</Elem>
+          </preprocessorList>
+          <useLinkerLibraries>false</useLinkerLibraries>
           <warningLevel>2</warningLevel>
         </cTool>
         <ccTool>
@@ -110,7 +121,15 @@
             <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
             <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
           </incDir>
-          <commandLine>-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR</commandLine>
+          <commandLine>-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -felide-constructors -mmcu=atmega328p</commandLine>
+          <preprocessorList>
+            <Elem>ARDUINO=10801</Elem>
+            <Elem>ARDUINO_ARCH_AVR</Elem>
+            <Elem>ARDUINO_AVR_NANO</Elem>
+            <Elem>F_CPU=16000000L</Elem>
+            <Elem>__AVR_ATmega328P__</Elem>
+          </preprocessorList>
+          <useLinkerLibraries>false</useLinkerLibraries>
           <warningLevel>2</warningLevel>
         </ccTool>
         <fortranCompilerTool>
@@ -125,6 +144,8 @@
             <pElem>../corelib/dist/Release/Arduino-MacOSX</pElem>
           </linkerAddLib>
           <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
@@ -152,6 +173,8 @@
       <folder path="TestFiles">
         <linkerTool>
           <linkerDynSerch>
+            <pElem>.</pElem>
+            <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
@@ -195,7 +218,9 @@
       </item>
       <item path="src/tool/pin/digital/Pin.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/tool/tool.h" ex="false" tool="3" flavor2="0">
+      <item path="src/tool/rs232/Api.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/tool/rs232/Api.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/view/Display.cpp" ex="false" tool="1" flavor2="0">
       </item>

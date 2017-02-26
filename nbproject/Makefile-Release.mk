@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/model/token/Generator.o \
 	${OBJECTDIR}/src/tool/pin/digital/Output.o \
 	${OBJECTDIR}/src/tool/pin/digital/Pin.o \
+	${OBJECTDIR}/src/tool/rs232/Api.o \
 	${OBJECTDIR}/src/view/Display.o \
 	${OBJECTDIR}/src/view/display/Message.o \
 	${OBJECTDIR}/src/view/display/message/Busy.o \
@@ -52,11 +53,11 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
+CFLAGS=-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p
 
 # CC Compiler Flags
-CCFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
-CXXFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
+CCFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -felide-constructors -mmcu=atmega328p
+CXXFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -felide-constructors -mmcu=atmega328p
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -78,72 +79,77 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tokenizer: ${OBJECTFILES}
 ${OBJECTDIR}/src/controller/Controller.o: src/controller/Controller.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/controller
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/controller/Controller.o src/controller/Controller.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/controller/Controller.o src/controller/Controller.cpp
 
 ${OBJECTDIR}/src/main.o: src/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
 
 ${OBJECTDIR}/src/model/prng/Provider.o: src/model/prng/Provider.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/model/prng
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/prng/Provider.o src/model/prng/Provider.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/prng/Provider.o src/model/prng/Provider.cpp
 
 ${OBJECTDIR}/src/model/state/State.o: src/model/state/State.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/model/state
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/state/State.o src/model/state/State.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/state/State.o src/model/state/State.cpp
 
 ${OBJECTDIR}/src/model/token/Generator.o: src/model/token/Generator.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/model/token
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/token/Generator.o src/model/token/Generator.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/token/Generator.o src/model/token/Generator.cpp
 
 ${OBJECTDIR}/src/tool/pin/digital/Output.o: src/tool/pin/digital/Output.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/tool/pin/digital
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tool/pin/digital/Output.o src/tool/pin/digital/Output.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tool/pin/digital/Output.o src/tool/pin/digital/Output.cpp
 
 ${OBJECTDIR}/src/tool/pin/digital/Pin.o: src/tool/pin/digital/Pin.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/tool/pin/digital
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tool/pin/digital/Pin.o src/tool/pin/digital/Pin.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tool/pin/digital/Pin.o src/tool/pin/digital/Pin.cpp
+
+${OBJECTDIR}/src/tool/rs232/Api.o: src/tool/rs232/Api.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/tool/rs232
+	${RM} "$@.d"
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/tool/rs232/Api.o src/tool/rs232/Api.cpp
 
 ${OBJECTDIR}/src/view/Display.o: src/view/Display.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/Display.o src/view/Display.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/Display.o src/view/Display.cpp
 
 ${OBJECTDIR}/src/view/display/Message.o: src/view/display/Message.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/display
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/Message.o src/view/display/Message.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/Message.o src/view/display/Message.cpp
 
 ${OBJECTDIR}/src/view/display/message/Busy.o: src/view/display/message/Busy.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/display/message
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Busy.o src/view/display/message/Busy.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Busy.o src/view/display/message/Busy.cpp
 
 ${OBJECTDIR}/src/view/display/message/Timeout.o: src/view/display/message/Timeout.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/display/message
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Timeout.o src/view/display/message/Timeout.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Timeout.o src/view/display/message/Timeout.cpp
 
 ${OBJECTDIR}/src/view/display/message/Token.o: src/view/display/message/Token.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/display/message
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Token.o src/view/display/message/Token.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/display/message/Token.o src/view/display/message/Token.cpp
 
 ${OBJECTDIR}/src/view/status/Buzzer.o: src/view/status/Buzzer.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/status
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/status/Buzzer.o src/view/status/Buzzer.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/status/Buzzer.o src/view/status/Buzzer.cpp
 
 ${OBJECTDIR}/src/view/status/Led.o: src/view/status/Led.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/view/status
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/status/Led.o src/view/status/Led.cpp
+	$(COMPILE.cc) -Wall -DARDUINO=10801 -DARDUINO_ARCH_AVR -DARDUINO_AVR_NANO -DF_CPU=16000000L -D__AVR_ATmega328P__ -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/view/status/Led.o src/view/status/Led.cpp
 
 # Subprojects
 .build-subprojects:

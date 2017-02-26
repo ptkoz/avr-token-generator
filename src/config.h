@@ -44,5 +44,8 @@
 // Token config.
 #define TOKEN_LENGTH 6
 
+// Serial port speed.
+#define SERIAL_SPEED 9600
+
 #endif /* CONFIG_H */
 

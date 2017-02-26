@@ -23,6 +23,7 @@
 #include "../view/Display.h"
 #include "../model/state/State.h"
 #include "../model/token/Generator.h"
+#include "../tool/rs232/Api.h"
 
 /*
  * Class that controls whole application logic.
@@ -36,7 +37,7 @@ class Controller {
 		void update();
 		// Called externally by program loop when button is pressed.
 		void handleNewTokenRequest();
-		// Checks if there is token available on serial port.
+		// Handle successfull token generation request.
 		void handleTokenReady();
 		// State timeout detected, what shall we do now?
 		void handleStateTimeout();
@@ -47,6 +48,8 @@ class Controller {
 
 		model::state::State state;
 		model::token::Generator generator;
+		
+		tool::rs232::Api api;
 };
 
 #endif

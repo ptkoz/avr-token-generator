@@ -29,17 +29,14 @@ Controller::Controller() :
 	led(PIN_SLED), 
 	buzzer(PIN_BUZZER), 
 	display(PIN_LCD_RS, PIN_LCD_RW, PIN_LCD_EN, PIN_LCD_D0, PIN_LCD_D1, PIN_LCD_D2, PIN_LCD_D3, PIN_LCD_BACKLIGHT),
-	generator(PIN_ANALOG_UNPLUGGED)
+	generator(PIN_ANALOG_UNPLUGGED),
+	api(SERIAL_SPEED)
 {
-	// Init serial port
-	Serial.begin(9600);
-	while (!Serial);
-	
-	Serial.println(F("LOG:Initialized application controller."));
+	api.log(F("Initialized application controller."));
 }
 
 Controller::~Controller() {
-	Serial.println(F("LOG:Quitting application."));
+	api.log(F("Quitting application."));
 }
 
 void Controller::update() {
@@ -49,7 +46,7 @@ void Controller::update() {
 	}
 
 	// If we're awaiting token, check if is ready.
-	if (model::state::AWAITING_TOKEN == state && generator.isReady()) {
+	if (state.isProcessingRequest() && generator.isReady()) {
 		handleTokenReady();
 	}
 
@@ -66,7 +63,7 @@ void Controller::handleNewTokenRequest() {
 		// user about rejection by buzzer.
 		buzzer.beep(view::status::buzzer::BUSY);
 	} else {
-		Serial.println(F("LOG:New token request received")); // Send request for new token
+		api.log(F("New token request received"));
 		
 		// We can generate new token. Start by changing application
 		// state.
@@ -85,23 +82,19 @@ void Controller::handleNewTokenRequest() {
 }
 
 void Controller::handleTokenReady() {
-	// Token is available on serial port. 
-	// Go and display it.
+	// Token is available. Go and display it.
 	state = model::state::TOKEN_READY;
 
 	led.disable();
 	buzzer.beep(view::status::buzzer::SUCCESS);
 	display.show(new view::display::message::Token(generator.getToken()));
-	
-	Serial.print("TKN:");
-	Serial.println(generator.getToken());
 }
 
 void Controller::handleStateTimeout() {
 	if (model::state::TOKEN_REQUESTED == state) {
 		// Progress bar on display is complete, we can
-		// look for token on serial port now.
-		state = model::state::AWAITING_TOKEN;
+		// display token if it's ready.
+		state = model::state::AWAITING_CONFIRMATION;
 	} else if (state.isProcessingRequest()) {
 		// Timeout occured during token genration. Show
 		// timeout message.
@@ -112,13 +105,13 @@ void Controller::handleStateTimeout() {
 		display.show(new view::display::message::Timeout);
 	} else if (model::state::IDLE == state) {
 		// We're now idle for some time and may put CPU into sleep mode.
-		Serial.println(F("LOG:Going to sleep"));
-		delay(100); // Serial port need some time to send data.
+		api.log(F("Going to sleep"));
+		delay(100); // Serial port API need some time to send data.
 		set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 		sleep_enable();
 		sleep_cpu();
 		sleep_disable();
-		Serial.println(F("LOG:Waking up"));
+		api.log(F("Waking up"));
 	} else {
 		// Timeout occured after successfull token
 		// request. Cleanup and go back to IDLE.

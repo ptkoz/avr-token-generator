@@ -58,10 +58,6 @@ int main(void) {
 			controller.handleNewTokenRequest();
 			handleInterruptFlag = false;
 		}
-
-		if (serialEventRun) {
-			serialEventRun();
-		}
 	}
 
 	return 0;

@@ -34,7 +34,7 @@ bool State::isTimedOut() const {
 			// Progress bar must be completed on this timeout.
 			return age > 1900;
 
-		case AWAITING_TOKEN:
+		case AWAITING_CONFIRMATION:
 			// How many seconds after progress bar is completed
 			// shall we wait for token on the serial port?
 			return age > 1000;
@@ -52,16 +52,16 @@ bool State::isTimedOut() const {
 	}
 }
 
-State & State::operator =(const state newState) {
+State & State::operator =(const ApplicationState newState) {
 	currentState = newState; // Change state.
 	lastStateChange = millis(); // Record change timestamp.
 	return *this;
 }
 
-bool State::operator ==(const state comparedState) const {
+bool State::operator ==(const ApplicationState comparedState) const {
 	return comparedState == currentState;
 }
 
-bool model::state::operator ==(const state stateA, const State & stateB) {
+bool model::state::operator ==(const ApplicationState stateA, const State & stateB) {
 	return stateB == stateA; // Pass to the class' == operator.
 }

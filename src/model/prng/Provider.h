@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef PROVIDER_H
+#define PROVIDER_H
 
 #include <Arduino.h>
 
@@ -51,5 +51,5 @@ class Provider {
 
 }}
 
-#endif /* RANDOM_H */
+#endif /* PROVIDER_H */
 

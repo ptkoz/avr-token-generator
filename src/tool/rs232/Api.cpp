@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Patryk Kozłowski
+ * Copyright (C) 2017 patryk
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,5 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pin/digital/Output.h"
-#include "pin/digital/Pin.h"
+/* 
+ * File:   Api.cpp
+ * Author: patryk
+ * 
+ * Created on 26 lutego 2017, 17:28
+ */
+
+#include "Api.h"
+
+using namespace tool::rs232;
+
+Api::Api(long serialSpeed) { 
+	Serial.begin(serialSpeed); // initialize serial port
+	while (!Serial);
+}
+
+Api::~Api() {
+	Serial.end();
+}
+
+void Api::log(const __FlashStringHelper * message) {
+	Serial.print(F("LOG:"));
+	Serial.println(message);
+}
+
+void Api::update() {
+	
+}

@@ -19,35 +19,37 @@
 #define SRC_MODEL_STATE_H_
 
 namespace model { namespace state {
+	
 	/*
 	 * Application state types:
 	 * 
 	 * -- IDLE --
 	 * Nothing is happening, display is cleared and powered
-	 * off and status LED is disabled.
+	 * off and status LED is disabled. CPU may go into sleep state.
 	 * 
 	 * -- TOKEN_READY --
 	 * Token has been successfully generated and is currently
 	 * displayed on the LCD screen. Status LED is disabled.
 	 * 
 	 * -- REQUEST_TIMEOUT --
-	 * Token could not be generated. Timeout message is currently
-	 * displayed on the LCD screen. Status LED is disabled.
+	 * Token could not be generated or confirmed. Timeout message
+	 * is currently displayed on the LCD screen. Status LED
+	 * is disabled.
 	 * 
 	 * -- TOKEN_REQUESTED --
 	 * User has requested for the token. Progres bar is
 	 * displayed on the LCD screen and the status LED is
 	 * blinking.
 	 * 
-	 * -- AWAITING_TOKEN --
-	 * Progress bar has reached it's endpoint. We can
-	 * now receive token and show it to the user.
+	 * -- AWAITING_CONFIRMATION --
+	 * Progress bar has reached it's endpoint. We're awaiting
+	 * for the final token confirmation from controlling unit.
 	 * 
 	 * Please note that following enum is order-sensitive. State
 	 * values greater or equal TOKEN_REQUESTED (100) are "busy"
 	 * states in which new token requests are ignored.
 	 */ 
-	typedef enum { IDLE = 0, TOKEN_READY, REQUEST_TIMEOUT, TOKEN_REQUESTED = 100, AWAITING_TOKEN } state;
+	typedef enum { IDLE = 0, TOKEN_READY, REQUEST_TIMEOUT, TOKEN_REQUESTED = 100, AWAITING_CONFIRMATION } ApplicationState;
 
 	/*
 	 * Class that controlls the application state.
@@ -64,18 +66,18 @@ namespace model { namespace state {
 			bool isTimedOut() const;
 
 			// Set the new state.
-			State & operator =(const state newState);
+			State & operator =(const ApplicationState newState);
 			
 			// Compare current state.
-			bool operator==(const state state) const;
+			bool operator==(const ApplicationState state) const;
 		private:
-			state currentState;
+			ApplicationState currentState;
 			unsigned long lastStateChange;
 
 	};
 
 	// Allow state comparison with constant on the left side.
-	bool operator ==(const state stateA, const State & stateB);
+	bool operator ==(const ApplicationState stateA, const State & stateB);
 }}
 
 #endif /* SRC_MODEL_STATE_H_ */
