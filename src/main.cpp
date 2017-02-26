@@ -19,6 +19,7 @@
 
 #include <Arduino.h>
 #include "controller/Controller.h"
+#include "config.h"
 
 // Declared weak in Arduino.h to allow user redefinitions.
 int atexit(void (* /*func*/)()) { return 0; }
@@ -44,7 +45,7 @@ int main(void) {
 
 	// It's easier to handle interruptions here than
 	// in controller.
-	attachInterrupt(digitalPinToInterrupt(2), interrupt, FALLING);
+	attachInterrupt(digitalPinToInterrupt(PIN_BUTTON), interrupt, FALLING);
 
 	// Let's create program controller.
 	Controller controller;

@@ -20,11 +20,16 @@
 #include <avr/power.h>
 #include <avr/sleep.h>
 #include "Controller.h"
+#include "../config.h"
 #include "../view/display/message/Busy.h"
 #include "../view/display/message/Timeout.h"
 #include "../view/display/message/Token.h"
 
-Controller::Controller() : led(13), buzzer(4), display(6, 7, 8, 9, 10, 11, 12, 5) {
+Controller::Controller() : 
+	led(PIN_SLED), 
+	buzzer(PIN_BUZZER), 
+	display(PIN_LCD_RS, PIN_LCD_RW, PIN_LCD_EN, PIN_LCD_D0, PIN_LCD_D1, PIN_LCD_D2, PIN_LCD_D3, PIN_LCD_BACKLIGHT) 
+{
 	// Init serial port
 	Serial.begin(9600);
 	while (!Serial);

@@ -62,7 +62,7 @@ build: .build-post
 	avr-size --mcu=atmega328 -C ${CND_ARTIFACT_PATH_${CONF}}
 
 upload: .build-post
-	avrdude -C/Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf -patmega328p -carduino -P/dev/cu.usbmodem1421 -b115200 -D -v -Uflash:w:${CND_ARTIFACT_PATH_${CONF}}.hex:i 
+	avrdude -C/Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf -patmega328p -carduino -P/dev/cu.usbmodem1411 -b115200 -D -v -Uflash:w:${CND_ARTIFACT_PATH_${CONF}}.hex:i 
 
  # clean
 clean: .clean-post
