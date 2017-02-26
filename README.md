@@ -14,7 +14,7 @@ Those are debug messages, sent from time to time to provide some basic device st
 
 * Messages starting with `"TKN:"`
 
-This is how new tokens are sent to the controlling unit. You should reply with simple `"OK"` followed by `LF` (warning: NOT `CRLF`) to inform device that everything is OK and user may authorize himself with the token.
+This is how new tokens are sent to the controlling unit. You should reply with simple `"OK"` followed by `LF` (warning: NOT `CRLF`) to inform device that everything is OK and user may authorize himself with the token. If you reply with anything different than `"OK\n"`, eg. `"FAIL\n"`, the token will be discarded and another token will be generated. This process will continue up to the timeout defined in application.
 
 ## Credits
 
