@@ -6,7 +6,7 @@ Please note that the whole authorization depends on user having physical access 
 
 ## API specification
 
-There are several message types sent through serial port to the controlling unit. Each message is followed by `CRLF` char sequence.
+There are several message types sent through serial port to the controlling unit. Each message is followed by `LF` char sequence.
 
 * Messages starting with `"LOG:"`
 
@@ -14,7 +14,7 @@ Those are debug messages, sent from time to time to provide some basic device st
 
 * Messages starting with `"TKN:"`
 
-This is how new tokens are sent to the controlling unit. You should reply with simple `"OK"` followed by `CRLF` to inform device that everything is OK and user may authorize himself with the token.
+This is how new tokens are sent to the controlling unit. You should reply with simple `"OK"` followed by `LF` (warning: NOT `CRLF`) to inform device that everything is OK and user may authorize himself with the token.
 
 ## Credits
 
