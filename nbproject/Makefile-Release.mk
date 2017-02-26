@@ -37,7 +37,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/controller/Controller.o \
 	${OBJECTDIR}/src/main.o \
-	${OBJECTDIR}/src/model/State.o \
+	${OBJECTDIR}/src/model/prng/Provider.o \
+	${OBJECTDIR}/src/model/state/State.o \
+	${OBJECTDIR}/src/model/token/Generator.o \
 	${OBJECTDIR}/src/tool/pin/digital/Output.o \
 	${OBJECTDIR}/src/tool/pin/digital/Pin.o \
 	${OBJECTDIR}/src/view/Display.o \
@@ -50,11 +52,11 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR
+CFLAGS=-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
 
 # CC Compiler Flags
-CCFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR
-CXXFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR
+CCFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
+CXXFLAGS=-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -83,10 +85,20 @@ ${OBJECTDIR}/src/main.o: src/main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.cpp
 
-${OBJECTDIR}/src/model/State.o: src/model/State.cpp
-	${MKDIR} -p ${OBJECTDIR}/src/model
+${OBJECTDIR}/src/model/prng/Provider.o: src/model/prng/Provider.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/model/prng
 	${RM} "$@.d"
-	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/State.o src/model/State.cpp
+	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/prng/Provider.o src/model/prng/Provider.cpp
+
+${OBJECTDIR}/src/model/state/State.o: src/model/state/State.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/model/state
+	${RM} "$@.d"
+	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/state/State.o src/model/state/State.cpp
+
+${OBJECTDIR}/src/model/token/Generator.o: src/model/token/Generator.cpp
+	${MKDIR} -p ${OBJECTDIR}/src/model/token
+	${RM} "$@.d"
+	$(COMPILE.cc) -Wall -I/usr/local/arduino/1.8/cores/arduino -I/usr/local/arduino/1.8/LiquidCrystal/src -I/usr/local/arduino/1.8/libraries/EEPROM/src -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/model/token/Generator.o src/model/token/Generator.cpp
 
 ${OBJECTDIR}/src/tool/pin/digital/Output.o: src/tool/pin/digital/Output.cpp
 	${MKDIR} -p ${OBJECTDIR}/src/tool/pin/digital

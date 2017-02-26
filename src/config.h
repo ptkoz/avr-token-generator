@@ -38,5 +38,11 @@
 #define PIN_LCD_D2 11
 #define PIN_LCD_D3 12
 
+// Uplugged analog pin prividing some entropy to PRNG
+#define PIN_ANALOG_UNPLUGGED 0
+
+// Token config.
+#define TOKEN_LENGTH 6
+
 #endif /* CONFIG_H */
 

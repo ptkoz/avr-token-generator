@@ -21,7 +21,8 @@
 #include "../view/status/Led.h"
 #include "../view/status/Buzzer.h"
 #include "../view/Display.h"
-#include "../model/State.h"
+#include "../model/state/State.h"
+#include "../model/token/Generator.h"
 
 /*
  * Class that controls whole application logic.
@@ -36,7 +37,7 @@ class Controller {
 		// Called externally by program loop when button is pressed.
 		void handleNewTokenRequest();
 		// Checks if there is token available on serial port.
-		void handleTokenReceive();
+		void handleTokenReady();
 		// State timeout detected, what shall we do now?
 		void handleStateTimeout();
 	private:
@@ -45,6 +46,7 @@ class Controller {
 		view::display::Display display;
 
 		model::state::State state;
+		model::token::Generator generator;
 };
 
 #endif

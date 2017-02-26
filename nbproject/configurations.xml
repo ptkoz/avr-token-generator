@@ -17,8 +17,18 @@
         <itemPath>src/controller/Controller.h</itemPath>
       </logicalFolder>
       <logicalFolder name="model" displayName="model" projectFiles="true">
-        <itemPath>src/model/State.cpp</itemPath>
-        <itemPath>src/model/State.h</itemPath>
+        <logicalFolder name="prng" displayName="prng" projectFiles="true">
+          <itemPath>src/model/prng/Provider.cpp</itemPath>
+          <itemPath>src/model/prng/Provider.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="state" displayName="state" projectFiles="true">
+          <itemPath>src/model/state/State.cpp</itemPath>
+          <itemPath>src/model/state/State.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="token" displayName="token" projectFiles="true">
+          <itemPath>src/model/token/Generator.cpp</itemPath>
+          <itemPath>src/model/token/Generator.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
       <logicalFolder name="tool" displayName="tool" projectFiles="true">
         <logicalFolder name="pin" displayName="pin" projectFiles="true">
@@ -90,7 +100,7 @@
             <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
             <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
           </incDir>
-          <commandLine>-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR</commandLine>
+          <commandLine>-Os -Wextra -ffunction-sections -fdata-sections -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR</commandLine>
           <warningLevel>2</warningLevel>
         </cTool>
         <ccTool>
@@ -100,7 +110,7 @@
             <pElem>/usr/local/arduino/1.8/LiquidCrystal/src</pElem>
             <pElem>/usr/local/arduino/1.8/libraries/EEPROM/src</pElem>
           </incDir>
-          <commandLine>-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR</commandLine>
+          <commandLine>-Os -Wextra -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10801 -DARDUINO_AVR_NANO -DARDUINO_ARCH_AVR</commandLine>
           <warningLevel>2</warningLevel>
         </ccTool>
         <fortranCompilerTool>
@@ -115,6 +125,7 @@
             <pElem>../corelib/dist/Release/Arduino-MacOSX</pElem>
           </linkerAddLib>
           <linkerDynSerch>
+            <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
@@ -152,6 +163,7 @@
             <pElem>.</pElem>
             <pElem>.</pElem>
             <pElem>.</pElem>
+            <pElem>.</pElem>
           </linkerDynSerch>
         </linkerTool>
       </folder>
@@ -163,9 +175,17 @@
       </item>
       <item path="src/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/model/State.cpp" ex="false" tool="1" flavor2="0">
+      <item path="src/model/prng/Provider.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/model/State.h" ex="false" tool="3" flavor2="0">
+      <item path="src/model/prng/Provider.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/model/state/State.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/model/state/State.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/model/token/Generator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/model/token/Generator.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/tool/pin/digital/Output.cpp" ex="false" tool="1" flavor2="0">
       </item>
