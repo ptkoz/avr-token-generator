@@ -6,6 +6,8 @@ Please note that the whole authorization depends on user having physical access 
 
 ## API specification
 
+Controlling unit example is available in my [Lua captive portal](https://github.com/pamelus/lua-captive-portal/blob/master/bin/tknd.lua).
+
 There are several message types sent through serial port to the controlling unit. Each message is followed by `LF` char sequence.
 
 * Messages starting with `"LOG:"`
